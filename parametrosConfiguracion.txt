@@ -1,0 +1,12 @@
+apiName=HUAUCHINANGO
+clientId=declaraciones_pde_huauchinango
+clientScopeRead=huauchinango
+clientScopeWrite=huauchinango
+clientDescription=Ayuntamiento de Huauchinango, Puebla
+mongoUsername=declarausr
+mongoPassword=4dm1n1str4d0r$
+mongoHostname=192.168.0.226
+mongoPort=27017
+mongoDatabase=declaraciones
+deploymentPort=9000
+vpn=true
