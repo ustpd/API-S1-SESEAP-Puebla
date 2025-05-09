@@ -114,7 +114,7 @@
      					sudo perl -pi -e "s/\"ApiName\": \".*\"/\"ApiName\": \"$apiName\"/" appsettings.json
 					sudo perl -pi -e "s/\"ClientId\": \".*\"/\"ClientId\": \"$clientId\"/" appsettings.json
 					sudo perl -pi -e "s/\"read\": \".*\"/\"read\": \"$clientScopeReadaux\"/" appsettings.json
-					sudo perl -pi -e "s/\"write\": \".*\"/\"write\": \"$clientScopeWriteaux\"/" appsettings.jso
+					sudo perl -pi -e "s/\"write\": \".*\"/\"write\": \"$clientScopeWriteaux\"/" appsettings.json
 					sudo perl -pi -e "s/\"EntePublico\": \".*\"/\"EntePublico\": \"$clientDescription\"/" appsettings.json
 					sudo perl -pi -e "s/\"UserName\": \".*\"/\"UserName\": \"$mongoUsername\"/" appsettings.json
                                        	#- - - - - - - - - - - - - - - - - -  - - - - - - - - - - - - - - - - - - - - - - 
@@ -122,8 +122,8 @@
 					#cadena="$4dm1n1$trad0r$"
 				        #cadena="$mongoPassword"
 					variable=$(mi_caracter_especial $mongoPassword)
-					#sudo perl -pi -e 's[mongoPassword][$variable]g' appsettings.json
-     					sudo perl -pi -e "s/\"Password\": \".*\"/\"Password\": \"$variable\"/" appsettings.json
+					sudo perl -pi -e 's[mongoPassword][$variable]g' appsettings.json
+     					#sudo perl -pi -e "s/\"Password\": \".*\"/\"Password\": \"$variable\"/" appsettings.json
 					#- - - - - --  - - - - - - - - - - - - - - - - - - - - - - -
 					#sudo perl -pi -e  "s[mongoPort][$mongoPort]g" appsettings.json
 					#sudo perl -pi -e  "s[mongoDatabase][$mongoDatabase]g" appsettings.json
