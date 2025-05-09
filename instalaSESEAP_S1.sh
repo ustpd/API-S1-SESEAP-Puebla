@@ -135,7 +135,8 @@
 					#sudo perl -pi -e "s/\"vpn\": (true|false)/\"vpn\": $vpn/" appsettings.json
      					#sudo perl -pi -e  "s["vpn": true]["Vpn": $vpn]g" appsettings.json
 	  				#sudo perl -pi -e "s/\"vpn\": \"true\"/\"vpn\": true/" appsettings.json
-					sudo perl -pi -e "s/\"vpn\": \"(true|false)\"/\"vpn\": $vpn/" appsettings.json
+					sudo perl -pi -e "s/\"vpn\": (true|false)/\"vpn\": \"$vpn\"/" appsettings.json
+     					sudo perl -pi -e "s/\"vpn\": \"(true|false)\"/\"vpn\": $vpn/" appsettings.json
      					echo -e "\e[37mArchivo appsettings.json actualizado ... Ok           \e[0m"
 
 					echo "= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = ="
