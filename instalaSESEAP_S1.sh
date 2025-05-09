@@ -88,40 +88,22 @@
 
 					chmod -R 777 appsettings.json
 					# E S T A B L E C I E N D O    V A L O R E S   E N   E L   A P P . S E T T I N G S    D E L    P R O Y E C T O    . N E T
-					#sed -i "s/apiName/$apiName/g" appsettings.json
-					#sed -i "s/clientId/$clientId/g" appsettings.json
-				  	#sed -i "s/clientScopeRead/$clientScopeReadaux/g" appsettings.json
-					#sed -i "s/clientScopeWrite/$clientScopeWriteaux/g" appsettings.json
-					#sed -i "s/clientDescription/$clientDescription/g" appsettings.json
-					#sed -i "s/mongoUsername/$mongoUsername/g" appsettings.json
-					#sed -i "s/mongoPassword/$mongoPassword/g" appsettings.json
-					#- - - - - --  - - - - - - - - - - - - - - - - - - - - - - -
-					#sed -i "s/mongoPort/$mongoPort/g" appsettings.json
-					#sed -i "s/mongoDatabase/$mongoDatabase/g" appsettings.json
-					#sed -i "s/mongoHostname/$mongoHostname/g" appsettings.json
+					sed -i "s/\"vpn\": .*/\"vpn\": $vpn/" appsettings.json
+					sed -i "s/\"ApiName\": \".*\"/\"ApiName\": \"$apiName\"/" appsettings.json
+					sed -i "s/\"ClientId\": \".*\"/\"ClientId\": \"$clientId\"/" appsettings.json
+					sed -i "s/\"read\": \".*\"/\"read\": \"$clientScopeReadaux\"/" appsettings.json
+					sed -i "s/\"write\": \".*\"/\"write\": \"$clientScopeWriteaux\"/" appsettings.json
+					sed -i "s/\"clientDescription\": \".*\"/\"clientDescription\": \"$clientDescription\"/" appsettings.json
+					sed -i "s/\"UserName\": \".*\"/\"UserName\": \"$mongoUsername\"/" appsettings.json
+					sed -i "s/\"Password\": \".*\"/\"Password\": \"$mongoPassword\"/" appsettings.json
+					sed -i "s/\"Port\": \".*\"/\"Port\": \"$mongoPort\"/" appsettings.json
+					sed -i "s/\"DatabaseName\": \".*\"/\"DatabaseName\": \"$mongoDatabase\"/" appsettings.json
+					sed -i "s/\"HostName\": \".*\"/\"HostName\": \"$mongoHostname\"/" appsettings.json
 
 					echo "= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = ="
 					echo -e "\e[45m C O N F I G U R A N D O    C O M P O N E N T E    A P I     S E S E A - Puebla  \e[0m"
 
-					#- - - - - - - - - - - - - - - - - - - - - - - -  - - - - - -
-					sudo perl -pi -e "s[apiName][$apiName]g" appsettings.json
-					sudo perl -pi -e "s[clientId][$clientId]g" appsettings.json
-					sudo perl -pi -e "s[clientScopeRead][$clientScopeReadaux]g" appsettings.json
-					sudo perl -pi -e  "s[clientScopeWrite][$clientScopeWriteaux]g" appsettings.json
-					sudo perl -pi -e  "s[clientDescription][$clientDescription]g" appsettings.json
-					sudo perl -pi -e  "s[mongoUsername][$mongoUsername]g" appsettings.json
-                                       	#- - - - - - - - - - - - - - - - - -  - - - - - - - - - - - - - - - - - - - - - - 
-					#sudo perl -pi -e  "s[mongoPassword][$mongoPassword]g" appsettings.json
-					#cadena="$4dm1n1$trad0r$"
-				        #cadena="$mongoPassword"
-					variable=$(mi_caracter_especial $mongoPassword)
-					sudo perl -pi -e 's[mongoPassword][$variable]g' appsettings.json
-					#- - - - - --  - - - - - - - - - - - - - - - - - - - - - - -
-					sudo perl -pi -e  "s[mongoPort][$mongoPort]g" appsettings.json
-					sudo perl -pi -e  "s[mongoDatabase][$mongoDatabase]g" appsettings.json
-					sudo perl -pi -e  "s[mongoHostname][$mongoHostname]g" appsettings.json
-					#- - - - - - Actualizando el campo VPN - - - -
-					sudo perl -pi -e  "s["vpn": true]["Vpn": $vpn]g" appsettings.json					
+			
 					echo -e "\e[37mArchivo appsettings.json actualizado ... Ok           \e[0m"
 
 					echo "= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = ="
