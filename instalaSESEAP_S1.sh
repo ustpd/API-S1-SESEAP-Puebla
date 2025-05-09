@@ -134,8 +134,9 @@
      					#- - - - - - Actualizando el campo VPN - - - -
 					#sudo perl -pi -e "s/\"vpn\": (true|false)/\"vpn\": $vpn/" appsettings.json
      					#sudo perl -pi -e  "s["vpn": true]["Vpn": $vpn]g" appsettings.json
-	  				sudo perl -pi -e "s/\"vpn\": \"true\"/\"vpn\": true/" appsettings.json
-					echo -e "\e[37mArchivo appsettings.json actualizado ... Ok           \e[0m"
+	  				#sudo perl -pi -e "s/\"vpn\": \"true\"/\"vpn\": true/" appsettings.json
+					sudo perl -pi -e "s/\"vpn\": \"(true|false)\"/\"vpn\": $vpn/" appsettings.json
+     					echo -e "\e[37mArchivo appsettings.json actualizado ... Ok           \e[0m"
 
 					echo "= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = ="
 					echo -e "\e[46m       C O M P O N E N T E    D O C K E R     I M A G E N    Y     C O N T E N E D O R     \e[0m"
