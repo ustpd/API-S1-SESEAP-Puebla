@@ -63,8 +63,10 @@
 					# Busca y copia hacia directorio SESEAP el archivo de configuración parametrosConfiguracion.text - - -
 
 					#Preparación de valores de clientScope read y write
-					clientScopeReadaux="$clientScopeRead"
-					clientScopeWriteaux="$clientScopeWrite"
+					#clientScopeReadaux="$clientScopeRead"
+					#clientScopeWriteaux="$clientScopeWrite"
+     					clientScopeReadaux="read:$clientScopeRead"
+					clientScopeWriteaux="write:$clientScopeWrite"
 					#Preparación de valores de clientScope read y write
 
 					echo -e "\e[43m Secretaría Ejecutiva del Sistema Estatal Anticorrupción Puebla - SESEAP            \e[0m"
@@ -107,14 +109,14 @@
 					#- - - - - - - - - - - - - - - - - - - - - - - -  - - - - - -
 					#sudo perl -pi -e "s[apiName][$apiName]g" appsettings.json
 					#sudo perl -pi -e "s[clientId][$clientId]g" appsettings.json
-					sudo perl -pi -e "s[clientScopeRead][$clientScopeReadaux]g" appsettings.json
-					sudo perl -pi -e  "s[clientScopeWrite][$clientScopeWriteaux]g" appsettings.json
+					#sudo perl -pi -e "s[clientScopeRead][$clientScopeReadaux]g" appsettings.json
+					#sudo perl -pi -e  "s[clientScopeWrite][$clientScopeWriteaux]g" appsettings.json
 					#sudo perl -pi -e  "s[clientDescription][$clientDescription]g" appsettings.json
 					#sudo perl -pi -e  "s[mongoUsername][$mongoUsername]g" appsettings.json
      					sudo perl -pi -e "s/\"ApiName\": \".*\"/\"ApiName\": \"$apiName\"/" appsettings.json
 					sudo perl -pi -e "s/\"ClientId\": \".*\"/\"ClientId\": \"$clientId\"/" appsettings.json
-					#sudo perl -pi -e "s/\"read\": \".*\"/\"read\": \"$clientScopeReadaux\"/" appsettings.json
-     					#sudo perl -pi -e "s/\"write\": \".*\"/\"write\": \"$clientScopeReadaux\"/" appsettings.json
+					sudo perl -pi -e "s/\"read\": \".*\"/\"read\": \"$clientScopeReadaux\"/" appsettings.json
+     					sudo perl -pi -e "s/\"write\": \".*\"/\"write\": \"$clientScopeReadaux\"/" appsettings.json
 					sudo perl -pi -e "s/\"EntePublico\": \".*\"/\"EntePublico\": \"$clientDescription\"/" appsettings.json
 					sudo perl -pi -e "s/\"UserName\": \".*\"/\"UserName\": \"$mongoUsername\"/" appsettings.json
                                        	#- - - - - - - - - - - - - - - - - -  - - - - - - - - - - - - - - - - - - - - - - 
