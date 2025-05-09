@@ -105,25 +105,36 @@
 					echo -e "\e[45m C O N F I G U R A N D O    C O M P O N E N T E    A P I     S E S E A - Puebla  \e[0m"
 
 					#- - - - - - - - - - - - - - - - - - - - - - - -  - - - - - -
-					sudo perl -pi -e "s[apiName][$apiName]g" appsettings.json
-					sudo perl -pi -e "s[clientId][$clientId]g" appsettings.json
-					sudo perl -pi -e "s[clientScopeRead][$clientScopeReadaux]g" appsettings.json
-					sudo perl -pi -e  "s[clientScopeWrite][$clientScopeWriteaux]g" appsettings.json
-					sudo perl -pi -e  "s[clientDescription][$clientDescription]g" appsettings.json
-					sudo perl -pi -e  "s[mongoUsername][$mongoUsername]g" appsettings.json
+					#sudo perl -pi -e "s[apiName][$apiName]g" appsettings.json
+					#sudo perl -pi -e "s[clientId][$clientId]g" appsettings.json
+					#sudo perl -pi -e "s[clientScopeRead][$clientScopeReadaux]g" appsettings.json
+					#sudo perl -pi -e  "s[clientScopeWrite][$clientScopeWriteaux]g" appsettings.json
+					#sudo perl -pi -e  "s[clientDescription][$clientDescription]g" appsettings.json
+					#sudo perl -pi -e  "s[mongoUsername][$mongoUsername]g" appsettings.json
+     					sudo perl -pi -e "s/\"ApiName\": \".*\"/\"ApiName\": \"$apiName\"/" appsettings.json
+					sudo perl -pi -e "s/\"ClientId\": \".*\"/\"ClientId\": \"$clientId\"/" appsettings.json
+					sudo perl -pi -e "s/\"read\": \".*\"/\"read\": \"$clientScopeReadaux\"/" appsettings.json
+					sudo perl -pi -e "s/\"write\": \".*\"/\"write\": \"$clientScopeWriteaux\"/" appsettings.jso
+					sudo perl -pi -e "s/\"EntePublico\": \".*\"/\"EntePublico\": \"$clientDescription\"/" appsettings.json
+					sudo perl -pi -e "s/\"UserName\": \".*\"/\"UserName\": \"$mongoUsername\"/" appsettings.json
                                        	#- - - - - - - - - - - - - - - - - -  - - - - - - - - - - - - - - - - - - - - - - 
 					#sudo perl -pi -e  "s[mongoPassword][$mongoPassword]g" appsettings.json
 					#cadena="$4dm1n1$trad0r$"
 				        #cadena="$mongoPassword"
 					variable=$(mi_caracter_especial $mongoPassword)
-					sudo perl -pi -e 's[mongoPassword][$variable]g' appsettings.json
+					#sudo perl -pi -e 's[mongoPassword][$variable]g' appsettings.json
+     					sudo perl -pi -e "s/\"Password\": \".*\"/\"Password\": \"$variable\"/" appsettings.json
 					#- - - - - --  - - - - - - - - - - - - - - - - - - - - - - -
-					sudo perl -pi -e  "s[mongoPort][$mongoPort]g" appsettings.json
-					sudo perl -pi -e  "s[mongoDatabase][$mongoDatabase]g" appsettings.json
-					sudo perl -pi -e  "s[mongoHostname][$mongoHostname]g" appsettings.json
-					#- - - - - - Actualizando el campo VPN - - - -
-					sudo perl -pi -e "s/\"vpn\": (true|false)/\"vpn\": $vpn/" appsettings.json
-     					#sudo perl -pi -e  "s["vpn": true]["Vpn": $vpn]g" appsettings.json					
+					#sudo perl -pi -e  "s[mongoPort][$mongoPort]g" appsettings.json
+					#sudo perl -pi -e  "s[mongoDatabase][$mongoDatabase]g" appsettings.json
+					#sudo perl -pi -e  "s[mongoHostname][$mongoHostname]g" appsettings.json
+					sudo perl -pi -e "s/\"Port\": \".*\"/\"Port\": \"$mongoPort\"/" appsettings.json
+					sudo perl -pi -e "s/\"DatabaseName\": \".*\"/\"DatabaseName\": \"$mongoDatabase\"/" appsettings.json
+					sudo perl -pi -e "s/\"HostName\": \".*\"/\"HostName\": \"$mongoHostname\"/" appsettings.json
+     					#- - - - - - Actualizando el campo VPN - - - -
+					#sudo perl -pi -e "s/\"vpn\": (true|false)/\"vpn\": $vpn/" appsettings.json
+     					#sudo perl -pi -e  "s["vpn": true]["Vpn": $vpn]g" appsettings.json
+	  				sudo perl -pi -e "s/\"vpn\": \"true\"/\"vpn\": true/" appsettings.json
 					echo -e "\e[37mArchivo appsettings.json actualizado ... Ok           \e[0m"
 
 					echo "= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = ="
