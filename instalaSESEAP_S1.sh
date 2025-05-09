@@ -56,9 +56,10 @@
 
 					# Busca y copia hacia directorio SESEAP el archivo de configuración parametrosConfiguracion.text - - -
 					set -a
-					source <(cat parametrosConfiguracion.txt|\
-									sed -e '/^#/d;/^\s*$/d' -e "s/'/'\\\''/g" -e "s/=\(.*\)/='\1'/g")
-					set +a
+					#source <(cat parametrosConfiguracion.txt|\
+					#				sed -e '/^#/d;/^\s*$/d' -e "s/'/'\\\''/g" -e "s/=\(.*\)/='\1'/g")
+					source <(cat parametrosConfiguracion.txt | sed -e '/^#/d;/^\s*$/d' -e "s/'/'\\\''/g" -e "s/=\(.*\)/='\1'/g")
+     					set +a
 					# Busca y copia hacia directorio SESEAP el archivo de configuración parametrosConfiguracion.text - - -
 
 					#Preparación de valores de clientScope read y write
