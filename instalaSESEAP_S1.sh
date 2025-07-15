@@ -113,8 +113,8 @@
 					#sudo perl -pi -e  "s[clientScopeWrite][$clientScopeWriteaux]g" appsettings.json
 					#sudo perl -pi -e  "s[clientDescription][$clientDescription]g" appsettings.json
 					#sudo perl -pi -e  "s[mongoUsername][$mongoUsername]g" appsettings.json
-     					#sudo perl -pi -e "s/\"ApiName\": \".*\"/\"ApiName\": \"$apiName\"/" appsettings.json
-	      		   		sudo perl -i -pe "s/\"ApiName\": \".*?\"/\"ApiName\": \"$apiName\"/" appsettings.json
+     					sudo perl -pi -e "s/\"ApiName\": \".*\"/\"ApiName\": \"$apiName\"/" appsettings.json
+	      		   		#sudo perl -i -pe "s/\"ApiName\": \".*?\"/\"ApiName\": \"$apiName\"/" appsettings.json
 					sudo perl -pi -e "s/\"ClientId\": \".*\"/\"ClientId\": \"$clientId\"/" appsettings.json
 					#sudo perl -pi -e "s/\"read\": \".*\"/\"read\": \"$clientScopeReadaux\"/" appsettings.json
      					#sudo perl -pi -e "s/\"write\": \".*\"/\"write\": \"$clientScopeWriteaux\"/" appsettings.json
