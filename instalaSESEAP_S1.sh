@@ -106,8 +106,8 @@
 					sudo perl -pi -e "s/\"ClientId\": \".*\"/\"ClientId\": \"$clientId\"/" appsettings.json
 					#sudo perl -pi -e "s/\"read\": \".*\"/\"read\": \"$clientScopeReadaux\"/" appsettings.json
      					#sudo perl -pi -e "s/\"write\": \".*\"/\"write\": \"$clientScopeWriteaux\"/" appsettings.json
-					sudo perl -pi -e "s/\"write\": \".*\"/\"write\": \"$clientScopeWriteaux\"/" appsettings.json
-					sudo perl -pi -e "s/\"read\": \".*\"/\"read\": \"$clientScopeReadaux\"/" appsettings.json
+					sudo perl -i -pe "s/\"read\": \".*?\"/\"read\": \"read:$clientScopeRead\"/" appsettings.json
+					sudo perl -i -pe "s/\"write\": \".*?\"/\"write\": \"write:$clientScopeWrite\"/" appsettings.json
 					sudo perl -pi -e "s/\"EntePublico\": \".*\"/\"EntePublico\": \"$clientDescription\"/" appsettings.json
 					sudo perl -pi -e "s/\"UserName\": \".*\"/\"UserName\": \"$mongoUsername\"/" appsettings.json
                                        	#- - - - - - - - - - - - - - - - - -  - - - - - - - - - - - - - - - - - - - - - - 
