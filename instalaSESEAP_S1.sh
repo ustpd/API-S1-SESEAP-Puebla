@@ -50,13 +50,10 @@
 							fi
 					# Crea Carpeta principal de despliegue - - - - - - - - - - - - - - - - - - - - - - -  - - - - - - - - -
 					# Busca y copia hacia directorio SESEAP el archivo de configuración parametrosConfiguracion.text - - -
-					set -a
-					source <(cat parametrosConfiguracion.txt|\
-									sed -e '/^#/d;/^\s*$/d' -e "s/'/'\\\''/g" -e "s/=
-.
-∗
-.∗/='\1'/g")
-					set +a
+					#source <(cat parametrosConfiguracion.txt|\
+					#sed -e '/^#/d;/^\s*$/d' -e "s/'/'\\\''/g" -e "s/=\(.*\)/='\1'/g")
+					source <(cat parametrosConfiguracion.txt | sed -e '/^#/d;/^\s*$/d' -e "s/'/'\\\''/g" -e "s/=\(.*\)/='\1'/g")
+     					set +a
 					# Busca y copia hacia directorio SESEAP el archivo de configuración parametrosConfiguracion.text - - -
 					#Preparación de valores de clientScope read y write
 					clientScopeReadaux="$clientScopeRead"
@@ -82,20 +79,60 @@
 					chmod -R 777 appsettings.json
 					# E S T A B L E C I E N D O    V A L O R E S   E N   E L   A P P . S E T T I N G S    D E L    P R O Y E C T O    . N E T
 					# Usamos Perl para escapar caracteres especiales en la contraseña de mongo
-					sudo perl -pi -e "s[apiName][$apiName]g" appsettings.json
-					sudo perl -pi -e "s[clientId][$clientId]g" appsettings.json
-					sudo perl -pi -e "s[clientScopeRead][$clientScopeReadaux]g" appsettings.json
-					sudo perl -pi -e  "s[clientScopeWrite][$clientScopeWriteaux]g" appsettings.json
-					sudo perl -pi -e  "s[clientDescription][$clientDescription]g" appsettings.json
-					sudo perl -pi -e  "s[mongoUsername][$mongoUsername]g" appsettings.json
-					# Escapamos la contraseña de mongo con \Q...\E para que Perl trate los caracteres especiales como literales
-					sudo perl -pi -e "s[mongoPassword][\Q$mongoPassword\E]g" appsettings.json
-					sudo perl -pi -e  "s[mongoPort][$mongoPort]g" appsettings.json
-					sudo perl -pi -e  "s[mongoDatabase][$mongoDatabase]g" appsettings.json
-					sudo perl -pi -e  "s[mongoHostname][$mongoHostname]g" appsettings.json
-					#- - - - - - Actualizando el campo VPN - - - -
-					sudo perl -pi -e  "s[\"vpn\": true][\"Vpn\": $vpn]g" appsettings.json
-					echo -e "\e[37mArchivo appsettings.json actualizado ... Ok           \e[0m"
+					#sed -i "s/apiName/$apiName/g" appsettings.json
+					#sed -i "s/clientId/$clientId/g" appsettings.json
+				  	#sed -i "s/clientScopeRead/$clientScopeReadaux/g" appsettings.json
+					#sed -i "s/clientScopeWrite/$clientScopeWriteaux/g" appsettings.json
+					#sed -i "s/clientDescription/$clientDescription/g" appsettings.json
+					#sed -i "s/mongoUsername/$mongoUsername/g" appsettings.json
+					#sed -i "s/mongoPassword/$mongoPassword/g" appsettings.json
+					#- - - - - --  - - - - - - - - - - - - - - - - - - - - - - -
+					#sed -i "s/mongoPort/$mongoPort/g" appsettings.json
+					#sed -i "s/mongoDatabase/$mongoDatabase/g" appsettings.json
+					#sed -i "s/mongoHostname/$mongoHostname/g" appsettings.json
+
+					echo "= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = ="
+					echo -e "\e[45m C O N F I G U R A N D O    C O M P O N E N T E    A P I     S E S E A - Puebla  \e[0m"
+
+					#- - - - - - - - - - - - - - - - - - - - - - - -  - - - - - -
+					#sudo perl -pi -e "s[apiName][$apiName]g" appsettings.json
+					#sudo perl -pi -e "s[clientId][$clientId]g" appsettings.json
+					#sudo perl -pi -e "s[clientScopeRead][$clientScopeReadaux]g" appsettings.json
+					#sudo perl -pi -e  "s[clientScopeWrite][$clientScopeWriteaux]g" appsettings.json
+					#sudo perl -pi -e  "s[clientDescription][$clientDescription]g" appsettings.json
+					#sudo perl -pi -e  "s[mongoUsername][$mongoUsername]g" appsettings.json
+     					sudo perl -pi -e "s/\"ApiName\": \".*\"/\"ApiName\": \"$apiName\"/" appsettings.json
+	      		   		#sudo perl -i -pe "s/\"ApiName\": \".*?\"/\"ApiName\": \"$apiName\"/" appsettings.json
+					sudo perl -pi -e "s/\"ClientId\": \".*\"/\"ClientId\": \"$clientId\"/" appsettings.json
+					#sudo perl -pi -e "s/\"read\": \".*\"/\"read\": \"$clientScopeReadaux\"/" appsettings.json
+     					#sudo perl -pi -e "s/\"write\": \".*\"/\"write\": \"$clientScopeWriteaux\"/" appsettings.json
+					sudo perl -pi -e "s/\"write\": \".*\"/\"write\": \"$clientScopeWriteaux\"/" appsettings.json
+					sudo perl -pi -e "s/\"read\": \".*\"/\"read\": \"$clientScopeReadaux\"/" appsettings.json
+					sudo perl -pi -e "s/\"EntePublico\": \".*\"/\"EntePublico\": \"$clientDescription\"/" appsettings.json
+					sudo perl -pi -e "s/\"UserName\": \".*\"/\"UserName\": \"$mongoUsername\"/" appsettings.json
+                                       	#- - - - - - - - - - - - - - - - - -  - - - - - - - - - - - - - - - - - - - - - - 
+					# ======= CORRECCIÓN PRINCIPAL =======
+					# Eliminar la función mi_caracter_especial y reemplazar con:
+					# Escapar automáticamente caracteres especiales en la contraseña usando perl
+					#sudo perl -pi -e "s[mongoPassword][\Q$mongoPassword\E]g" appsettings.json
+ 					sudo perl -pi -e "s/\"Password\": \".*\"/\"Password\": \"\Q$mongoPassword\E\"/" appsettings.json
+					# =====================================
+     					#sudo perl -pi -e "s/\"Password\": \".*\"/\"Password\": \"$variable\"/" appsettings.json
+					#- - - - - --  - - - - - - - - - - - - - - - - - - - - - - -
+					#sudo perl -pi -e  "s[mongoPort][$mongoPort]g" appsettings.json
+					#sudo perl -pi -e  "s[mongoDatabase][$mongoDatabase]g" appsettings.json
+					#sudo perl -pi -e  "s[mongoHostname][$mongoHostname]g" appsettings.json
+					sudo perl -pi -e "s/\"Port\": \".*\"/\"Port\": \"$mongoPort\"/" appsettings.json
+					sudo perl -pi -e "s/\"DatabaseName\": \".*\"/\"DatabaseName\": \"$mongoDatabase\"/" appsettings.json
+					sudo perl -pi -e "s/\"HostName\": \".*\"/\"HostName\": \"$mongoHostname\"/" appsettings.json
+     					#- - - - - - Actualizando el campo VPN - - - -
+					#sudo perl -pi -e "s/\"vpn\": (true|false)/\"vpn\": $vpn/" appsettings.json
+     					#sudo perl -pi -e  "s["vpn": true]["Vpn": $vpn]g" appsettings.json
+	  				#sudo perl -pi -e "s/\"vpn\": \"true\"/\"vpn\": true/" appsettings.json
+					sudo perl -pi -e "s/\"vpn\": (true|false)/\"vpn\": \"$vpn\"/" appsettings.json
+     					sudo perl -pi -e "s/\"vpn\": \"(true|false)\"/\"vpn\": $vpn/" appsettings.json
+     					echo -e "\e[37mArchivo appsettings.json actualizado ... Ok           \e[0m"
+
 					echo "= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = ="
 					echo -e "\e[46m       C O M P O N E N T E    D O C K E R     I M A G E N    Y     C O N T E N E D O R     \e[0m"
 					echo "= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = ="
