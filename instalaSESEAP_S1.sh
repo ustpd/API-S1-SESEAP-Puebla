@@ -114,7 +114,6 @@
 					#sudo perl -pi -e  "s[clientDescription][$clientDescription]g" appsettings.json
 					#sudo perl -pi -e  "s[mongoUsername][$mongoUsername]g" appsettings.json
      					sudo perl -pi -e "s/\"ApiName\": \".*\"/\"ApiName\": \"$apiName\"/" appsettings.json
-	      		   		#sudo perl -i -pe "s/\"ApiName\": \".*?\"/\"ApiName\": \"$apiName\"/" appsettings.json
 					sudo perl -pi -e "s/\"ClientId\": \".*\"/\"ClientId\": \"$clientId\"/" appsettings.json
 					#sudo perl -pi -e "s/\"read\": \".*\"/\"read\": \"$clientScopeReadaux\"/" appsettings.json
      					#sudo perl -pi -e "s/\"write\": \".*\"/\"write\": \"$clientScopeWriteaux\"/" appsettings.json
@@ -123,12 +122,11 @@
 					sudo perl -pi -e "s/\"EntePublico\": \".*\"/\"EntePublico\": \"$clientDescription\"/" appsettings.json
 					sudo perl -pi -e "s/\"UserName\": \".*\"/\"UserName\": \"$mongoUsername\"/" appsettings.json
                                        	#- - - - - - - - - - - - - - - - - -  - - - - - - - - - - - - - - - - - - - - - - 
-					# ======= CORRECCIÓN PRINCIPAL =======
-					# Eliminar la función mi_caracter_especial y reemplazar con:
-					# Escapar automáticamente caracteres especiales en la contraseña usando perl
-					#sudo perl -pi -e "s[mongoPassword][\Q$mongoPassword\E]g" appsettings.json
- 					sudo perl -pi -e "s/\"Password\": \".*\"/\"Password\": \"\Q$mongoPassword\E\"/" appsettings.json
-					# =====================================
+					#sudo perl -pi -e  "s[mongoPassword][$mongoPassword]g" appsettings.json
+					#cadena="$4dm1n1$trad0r$"
+				        #cadena="$mongoPassword"
+					variable=$(mi_caracter_especial $mongoPassword)
+					sudo perl -pi -e 's[mongoPassword][$variable]g' appsettings.json
      					#sudo perl -pi -e "s/\"Password\": \".*\"/\"Password\": \"$variable\"/" appsettings.json
 					#- - - - - --  - - - - - - - - - - - - - - - - - - - - - - -
 					#sudo perl -pi -e  "s[mongoPort][$mongoPort]g" appsettings.json
