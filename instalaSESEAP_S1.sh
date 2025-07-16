@@ -14,7 +14,7 @@
 				mkdir API.S1.SESEAP
 				sudo chmod -R 777 API.S1.SESEAP
 				cd API.S1.SESEAP
-				curl -L -O https://github.com/gatroxrd/API-S1-SESEAP-Puebla/raw/main/PDEPuebla.S1.PDN.zip --output API.S1.SESEAP/PDEPuebla.S1.PDN.zip
+				curl -L -O https://github.com/ustpd/API-S1-SESEAP-Puebla/raw/main/PDEPuebla.S1.PDN.zip --output API.S1.SESEAP/PDEPuebla.S1.PDN.zip
 				echo "= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = ="
 				echo -e "\033[33mDescomprimiendo archivos .NET dentro de API.S1.SESEAP \033[0m"
 				unzip -o PDEPuebla.S1.PDN.zip
