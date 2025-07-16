@@ -18,6 +18,11 @@
 				echo "= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = ="
 				echo -e "\033[33mDescomprimiendo archivos .NET dentro de API.S1.SESEAP \033[0m"
 				unzip -o PDEPuebla.S1.PDN.zip
+				# Mover los archivos de la carpeta interna al directorio actual
+				if [ -d "PDEPuebla.S1.PDN" ]; then
+				    find PDEPuebla.S1.PDN -mindepth 1 -maxdepth 1 -exec mv -t . {} +
+				    rmdir PDEPuebla.S1.PDN
+				fi
 				echo "= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = ="
 				echo -e "\033[33mEliminando archivo .zip previamente descargado \033[0m"
 				rm  -rf PDEPuebla.S1.PDN.zip
@@ -52,6 +57,7 @@
 					# Busca y copia hacia directorio SESEAP el archivo de configuración parametrosConfiguracion.text - - -
 					#source <(cat parametrosConfiguracion.txt|\
 					#sed -e '/^#/d;/^\s*$/d' -e "s/'/'\\\''/g" -e "s/=\(.*\)/='\1'/g")
+    					set -a
 					source <(cat parametrosConfiguracion.txt | sed -e '/^#/d;/^\s*$/d' -e "s/'/'\\\''/g" -e "s/=\(.*\)/='\1'/g")
      					set +a
 					# Busca y copia hacia directorio SESEAP el archivo de configuración parametrosConfiguracion.text - - -
@@ -163,7 +169,7 @@
 					echo "puebladeclara@seseap.puebla.gob.mx"
 					#Actualiza al archivo origen en la ubicacion superior
 					cd ..
-					cp -a parametrosConfiguracion.txt ../
+					sudo cp -a parametrosConfiguracion.txt ../
          			        echo "= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = "
 					echo "= = El contenedor creado por la API de interconexión Puebla se identificará con la siguiente etiqueta 'NAMES' :  "
 					echo -e "                                     \033[33m api-interconexion-puebla \033[0m"
